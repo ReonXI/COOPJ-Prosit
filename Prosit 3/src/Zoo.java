@@ -1,43 +1,25 @@
-class Zoo {
+public class Zoo {
 
     // ATTRIBUTES
     Animal[] animals;
-    String name;
+    String name, city;
+    int nbrAnimals;
     final int nbrCages = 25;
-    int animalCount = 0;
 
-    // CONSTRUCTEUR
-    public Zoo(String name) {
-        this.name = name;
+    // CONSTRUCTEURS
+    public Zoo() {
+    }
+
+    public Zoo(String name, String city) {
         animals = new Animal[nbrCages];
-    }
-
-    // GETTERS
-    public Animal[] getAnimals() {
-        return animals;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public int getNbrCages() {
-        return nbrCages;
-    }
-
-    public int getAnimalCount() {
-        return animalCount;
-    }
-
-    // SETTERS
-    public void setName(String name) {
         this.name = name;
+        this.city = city;
     }
 
     // 10/ AJOUT
     public boolean addAnimal(Animal animal) {
 
-        if (animalCount >= animals.length) {
+        if (nbrAnimals >= animals.length) {
             return false;
         }
 
@@ -45,8 +27,8 @@ class Zoo {
             return false;
         }
 
-        animals[animalCount] = animal;
-        animalCount++;
+        animals[nbrAnimals] = animal;
+        nbrAnimals++;
 
         return true;
     }
@@ -54,7 +36,7 @@ class Zoo {
     // 11/ AFFICHAGE
     public void displayAnimals() {
 
-        for (int i = 0; i < animalCount; i++) {
+        for (int i = 0; i < nbrAnimals; i++) {
             System.out.println(animals[i]);
         }
     }
@@ -62,7 +44,7 @@ class Zoo {
     // 11/ RECHERCHE
     public int searchAnimal(Animal animal) {
 
-        for (int i = 0; i < animalCount; i++) {
+        for (int i = 0; i < nbrAnimals; i++) {
 
             if (animals[i].getName().equals(animal.getName())) {
                 return i;
@@ -81,20 +63,27 @@ class Zoo {
             return false;
         }
 
-        for (int i = position; i < animalCount - 1; i++) {
+        for (int i = position; i < nbrAnimals - 1; i++) {
             animals[i] = animals[i + 1];
         }
 
-        animals[animalCount - 1] = null;
-        animalCount--;
+        animals[nbrAnimals - 1] = null;
+        nbrAnimals--;
 
         return true;
+    }
+
+    // 14/ AFFICHAGE DU ZOO
+    public void displayZoo() {
+        System.out.println("Name: " + name + ", City: " + city +
+                ", N° Cages: " + nbrCages +
+                ", N° animals: " + nbrAnimals);
     }
 
     // 15/ ZOO PLEIN
     public boolean isZooFull() {
 
-        if (animalCount >= nbrCages) {
+        if (nbrAnimals >= nbrCages) {
             return true;
         }
 
@@ -104,10 +93,17 @@ class Zoo {
     // 15/ COMPARAISON
     public Zoo comparerZoo(Zoo z1, Zoo z2) {
 
-        if (z1.animalCount > z2.animalCount) {
+        if (z1.nbrAnimals > z2.nbrAnimals) {
             return z1;
         }
 
         return z2;
+    }
+
+    @Override
+    public String toString() {
+        return "Name: " + name + ", City: " + city +
+                ", N° Cages: " + nbrCages +
+                ", N° animals: " + nbrAnimals;
     }
 }

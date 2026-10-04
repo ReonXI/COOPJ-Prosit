@@ -1,20 +1,21 @@
 public class ZooManagement {
+
     public static void main(String[] args) {
 
-        Zoo zoo = new Zoo("My Zoo");
+        Animal lion = new Animal();
+        lion.name = "Simba";
+        lion.age = 8;
+        lion.family = "Cats";
+        lion.isMammal = true;
 
-        Animal lion = new Animal("Lion", "Felidae");
-        Animal tiger = new Animal("Tiger", "Felidae");
+        Zoo myZoo = new Zoo("Wildlife Park", "Ariana");
+        Zoo notMyZoo = new Zoo("WaterPark", "Siliana");
 
-        zoo.addAnimal(lion);
-        zoo.addAnimal(tiger);
+        Animal dog = new Animal("Canine", "Snoopy", 2, true);
 
-        zoo.displayAnimals();
+        myZoo.displayZoo();
 
-        System.out.println(zoo.searchAnimal(lion));
-
-        zoo.removeAnimal(tiger);
-
-        zoo.displayAnimals();
+        System.out.println(myZoo);
+        System.out.println(dog);
     }
 }
